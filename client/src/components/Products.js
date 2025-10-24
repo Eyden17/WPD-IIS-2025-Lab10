@@ -21,6 +21,7 @@ function formatNumber(n) { if (typeof n !== "number" || !Number.isFinite(n)) ret
 
 export default function Products({ baseUrl, apiKey, accept, limit, sort, onOpenDetail }) {
   const [page, setPage] = useState(1);
+  const [retryKey, setRetryKey] = useState(0);
   const [state, setState] = useState({
     loading: false,
     error: null,
@@ -68,7 +69,7 @@ export default function Products({ baseUrl, apiKey, accept, limit, sort, onOpenD
 
     loadData();
     return () => ac.abort();
-  }, [baseUrl, apiKey, accept, page, limit]);
+  }, [baseUrl, apiKey, accept, page, limit, retryKey]);
 
   const sorted = useMemo(() => sortItems(state.items, sort), [state.items, sort]);
 
@@ -110,7 +111,11 @@ export default function Products({ baseUrl, apiKey, accept, limit, sort, onOpenD
       {!state.loading && state.error && (
         <div role="alert">
           <p>Error: {state.error.message}</p>
-          <button className="btn" onClick={() => setPage((p) => p)}>
+          <button
+            className="btn"
+            onClick={() => setRetryKey((k) => k + 1)}
+            disabled={state.loading}
+          >
             Reintentar
           </button>
         </div>

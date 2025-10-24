@@ -9,8 +9,8 @@ body {
 
 /* ===== Paleta y tokens ===== */
 :root {
-  --primary: #2563eb;
-  --primary-light: #3b82f6;
+  --primary: #25eba9;
+  --primary-light: #3bf6ae;
   --primary-bg: #eff6ff;
   --border: #e5e7eb;
   --muted: #6b7280;
@@ -255,7 +255,7 @@ body {
 }
 
 .pre-raw {
-  background: #0b1021;
+  background: #0b2021;
   color: #e5e7eb;
   padding: 12px 14px;
   border-radius: var(--radius);
